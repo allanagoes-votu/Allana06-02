@@ -1,2 +1,46 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# ---------------------------------------------------
+# Simulador de Semáforo com ESP32 - MicroPython
+# LEDs:
+# Verde    -> GPIO 2
+# Amarelo  -> GPIO 4
+# Vermelho -> GPIO 16
+# ---------------------------------------------------
+
+from machine import Pin
+import time
+
+# Configuração dos pinos
+led_verde = Pin(2, Pin.OUT)
+led_amarelo = Pin(4, Pin.OUT)
+led_vermelho = Pin(16, Pin.OUT)
+
+def apagar_todos():
+    """Apaga todos os LEDs"""
+    led_verde.off()
+    led_amarelo.off()
+    led_vermelho.off()
+
+while True:
+    # ---------------- VERDE ----------------
+    print("VERDE")
+    apagar_todos()
+    led_verde.on()
+    time.sleep(10)
+
+    # ---------------- AMARELO ----------------
+    print("AMARELO")
+    apagar_todos()
+    
+    # Amarelo piscando durante 4 segundos
+    for i in range(8):  # 8 x 0.5s = 4s
+        led_amarelo.on()
+        time.sleep(0.25)
+        led_amarelo.off()
+        time.sleep(0.25)
+
+    # ---------------- VERMELHO ----------------
+    print("VERMELHO")
+    apagar_todos()
+    led_vermelho.on()
+    time.sleep(10)# Auto detect text files and perform LF normalization
+
